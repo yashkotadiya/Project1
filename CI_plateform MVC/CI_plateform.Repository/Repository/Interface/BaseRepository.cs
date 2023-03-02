@@ -1,4 +1,5 @@
 ﻿using CI_plateform.Models.ViewModels;
+using CI_plateform.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace CI_plateform.Repository.Repository.Interface
     {
         Task<int> CreateUser(RegisterViewModel model);
         Task<bool> LoginUser(RegisterViewModel model);
-        Task<int> ForgotUserPass(ForgotViewModel model);
-      
+        Task<bool> ForgotUserPassword(ForgotViewModel model);
+
+        /*        Task<int> AddPasswordEmail(ResetViewModel model, string token);*/
+        Task<int> ResetUserPassword(ResetViewModel model);
     }
     
 }

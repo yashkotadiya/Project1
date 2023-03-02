@@ -1,12 +1,6 @@
 ﻿using CI_plateform.Models.Models;
 using CI_plateform.Models.ViewModels;
 using CI_plateform.Repository.Repository.Interface;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CI_plateform.Repository.Repository
 {
@@ -44,13 +38,54 @@ namespace CI_plateform.Repository.Repository
 
         }
 
-        public async Task<int> ForgotUserPass(ForgotViewModel model)
+        public async Task<bool> ForgotUserPassword(ForgotViewModel model)
         {
-            var userExists = _context.Users.Any(u => u.Email == model.Email);
-            await _context.SaveChangesAsync();
-            return userExists ? 1 : 0;
-              
+
+
+            /*  var userExists = _context.Users.Where(a => a.Email == model.Email).FirstOrDefault();*/
+            bool userExists = _context.Users.Any(a => a.Email == model.Email);
+            return userExists;
         }
+      /*  public async Task<int> AddPasswordEmail(ResetViewModel model, string token)
+        {
+            var user1 = new PasswordReset()
+            {
+                Email = model.Email,
+                Token = token,
+            };
+            _context.PasswordResets.Add(user1);
+            await _context.SaveChangesAsync();
+            return 1;
+        }
+*/
+        public async Task<int>  ResetUserPassword(ResetViewModel model)
+        {
+            var checkemailtoken = _context.PasswordResets.Where(u => u.Email == model.Email && u.Token == model.Token).OrderBy(u => u.Id).LastOrDefault();
+                if (checkemailtoken != null)
+                {
+                    var updatepass = _context.Users.Where(u => u.Email == model.Email).FirstOrDefault();
+
+                    if (updatepass != null)
+                    {
+                        updatepass.Password = model.Password;
+                        updatepass.UpdatedAt = DateTime.Now;
+
+                        _context.Users.Update(updatepass);
+                        _context.SaveChanges();
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+
+                }
+                else
+                {
+                    return 0;
+                }
+        }
+
     }
     
 }

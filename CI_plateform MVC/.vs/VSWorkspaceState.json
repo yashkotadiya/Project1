@@ -8,6 +8,6 @@
     "\\CI_plateform\\Views",
     "\\CI_plateform\\Views\\Home"
   ],
-  "SelectedNode": "\\CI_plateform.sln",
+  "SelectedNode": "\\CI_plateform\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }
