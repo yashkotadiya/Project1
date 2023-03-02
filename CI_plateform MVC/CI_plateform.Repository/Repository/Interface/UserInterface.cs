@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CI_plateform.Repository.Repository.Interface
 {
-    public interface BaseRepository
+    public interface UserInterface
     {
         Task<int> CreateUser(RegisterViewModel model);
         Task<bool> LoginUser(RegisterViewModel model);
@@ -16,6 +16,10 @@ namespace CI_plateform.Repository.Repository.Interface
 
         /*        Task<int> AddPasswordEmail(ResetViewModel model, string token);*/
         Task<int> ResetUserPassword(ResetViewModel model);
+
+
+      
+
     }
     
 }

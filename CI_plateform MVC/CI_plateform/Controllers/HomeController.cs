@@ -14,11 +14,11 @@ namespace CI_plateform.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly BaseRepository _userRepository;
+        private readonly UserInterface _userRepository;
         private readonly CiplateformContext _context;
 
 
-        public HomeController(ILogger<HomeController> logger, BaseRepository userRepository, CiplateformContext context)
+        public HomeController(ILogger<HomeController> logger, UserInterface userRepository, CiplateformContext context)
         {
             _logger = logger;
             _userRepository = userRepository;

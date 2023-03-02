@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<CI_plateform.Models.Models.City>
+@*@model CI_plateform.Models.Models.City*@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light justify-content-end shadow bg-body p-0">
     <div class="container-fluid d-flex justify-content-between">
@@ -19,19 +20,21 @@
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <button class="nav-link dropdown-toggle  p-3 text-dark"
-                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" type="submit" >
                             Country
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @foreach (var item in Model) {
                             <li class="mx-1">
                                 <div class="form-check">
-                                    <input class="form-check-input checkbox" type="checkbox" value="country 1"
+                                    <input class="form-check-input checkbox" type="checkbox" value="@Html.DisplayFor(modelItem => item.Name)"
                                            id="flexCheckDefault" />
                                     <label class="form-check-label" for="flexCheckDefault">
-                                        country 1
+                                        @Html.DisplayFor(modelItem => item.Name)
                                     </label>
                                 </div>
                             </li>
+                            }
                             <li class="mx-1">
                                 <div class="form-check">
                                     <input class="form-check-input checkbox" type="checkbox" value="country 2"

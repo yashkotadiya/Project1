@@ -11,7 +11,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CiplateformContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("dbConnectionStrings")));
 
-builder.Services.AddScoped<BaseRepository,UserRepository>();
+builder.Services.AddScoped<UserInterface,UserRepository>();
+builder.Services.AddScoped<PlateformInterface, PlateformRepository>();
 
 var app = builder.Build();
 
@@ -24,7 +25,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles();   
 
 app.UseRouting();
 

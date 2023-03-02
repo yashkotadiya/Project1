@@ -931,3 +931,8 @@ D:\yash\project11111\CI_plateform MVC\CI_plateform\obj\Debug\net6.0\scopedcss\bu
 D:\yash\project11111\CI_plateform MVC\CI_plateform\obj\Debug\net6.0\scopedcss\projectbundle\CI_plateform.bundle.scp.css
 D:\yash\project11111\CI_plateform MVC\CI_plateform\obj\Debug\net6.0\CI_plateform.csproj.CopyComplete
 D:\yash\project11111\CI_plateform MVC\CI_plateform\obj\Debug\net6.0\CI_plateform.genruntimeconfig.cache
+D:\yash\project11111\CI_plateform MVC\CI_plateform\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\yash\project11111\CI_plateform MVC\CI_plateform\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\yash\project11111\CI_plateform MVC\CI_plateform\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\yash\project11111\CI_plateform MVC\CI_plateform\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\yash\project11111\CI_plateform MVC\CI_plateform\obj\Debug\net6.0\CI_plateform.MvcApplicationPartsAssemblyInfo.cs

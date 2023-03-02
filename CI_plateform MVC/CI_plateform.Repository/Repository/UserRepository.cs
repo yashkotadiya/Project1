@@ -4,7 +4,7 @@ using CI_plateform.Repository.Repository.Interface;
 
 namespace CI_plateform.Repository.Repository
 {
-    public class UserRepository : BaseRepository
+    public class UserRepository : UserInterface
     {
         private readonly CiplateformContext _context;
 
