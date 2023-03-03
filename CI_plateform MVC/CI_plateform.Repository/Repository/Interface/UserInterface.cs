@@ -11,7 +11,7 @@ namespace CI_plateform.Repository.Repository.Interface
     public interface UserInterface
     {
         Task<int> CreateUser(RegisterViewModel model);
-        Task<bool> LoginUser(RegisterViewModel model);
+        Task<User> LoginUser(RegisterViewModel model);
         Task<bool> ForgotUserPassword(ForgotViewModel model);
 
         /*        Task<int> AddPasswordEmail(ResetViewModel model, string token);*/

@@ -1,4 +1,5 @@
 ﻿using CI_plateform.Models.Models;
+using CI_plateform.Models.ViewModels;
 using CI_plateform.Repository.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -16,15 +17,25 @@ namespace CI_plateform.Repository.Repository
         {
             _context = context;
         }
-        public async Task<List<City>> DisplayCityAndCountry(City Model)
+        public async Task<CityViewModel> DisplayCityAndCountry(CityViewModel Model)
         {
-            return  _context.Cities
-                .Select(city => new City()
+            var filter = new CityViewModel
+            {
+                Cities = _context.Cities.ToList(),
+                skills = _context.Skills.ToList(),
+                Contries = _context.Countries.ToList(),
+                missionThemes = _context.MissionThemes.ToList()
+
+            };
+          
+                return filter;
+          
+               /* .Select(city => new City()
                 {
                     CityId = city.CityId,
                     Name = city.Name,
                 
-                }).ToList();
+                }).ToList();*/
             
         }
 

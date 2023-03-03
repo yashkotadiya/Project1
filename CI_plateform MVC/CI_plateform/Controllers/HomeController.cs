@@ -39,58 +39,60 @@ namespace CI_plateform.Controllers
             if (ModelState.IsValid)
             {
 
-                bool x = await _userRepository.LoginUser(model);
-                if (x == true)
+                var x = await _userRepository.LoginUser(model);
+                if (x != null)
                 {
+                    HttpContext.Session.SetString("username", x.FirstName + " " + x.LastName);
                     return RedirectToAction("plateform", "Main");
-                }
+                   
+               }
 
-            }
-            return View(model);
-        }
-
-
-
-
-        public IActionResult register()
-        {
-
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                await _userRepository.CreateUser(model);
-                return RedirectToRoute("login");
-            }
-            ViewData["ModelState"] = "Model state invalid.";
-            return View(model);
-        }
+           }
+           return View(model);
+       }
 
 
 
 
-        public IActionResult forgot()
-        {
-            return View();
-        }
+       public IActionResult register()
+       {
 
-        [HttpPost]
-        [Route("Home/forgot", Name = "forgot")]
-        public async Task<IActionResult> forgot(ForgotViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                bool x = await _userRepository.ForgotUserPassword(model);
-                if( x != null)
-                {
-                    string token = Guid.NewGuid().ToString();
-                    SendVerificationLinkEmail(model.Email, token);
-                    /* await _userRepository.ForgotUserPassword(model);*/
+           return View();
+       }
+
+       [HttpPost]
+       [ValidateAntiForgeryToken]
+       public async Task<IActionResult> register(RegisterViewModel model)
+       {
+           if (ModelState.IsValid)
+           {
+               await _userRepository.CreateUser(model);
+               return RedirectToRoute("login");
+           }
+           ViewData["ModelState"] = "Model state invalid.";
+           return View(model);
+       }
+
+
+
+
+       public IActionResult forgot()
+       {
+           return View();
+       }
+
+       [HttpPost]
+       [Route("Home/forgot", Name = "forgot")]
+       public async Task<IActionResult> forgot(ForgotViewModel model)
+       {
+           if (ModelState.IsValid)
+           {
+               bool x = await _userRepository.ForgotUserPassword(model);
+               if( x != null)
+               {
+                   string token = Guid.NewGuid().ToString();
+                   SendVerificationLinkEmail(model.Email, token);
+                   /* await _userRepository.ForgotUserPassword(model);*/
                     var user1 = new PasswordReset()
                     {
                         Email = model.Email,

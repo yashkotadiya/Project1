@@ -2,6 +2,7 @@ using CI_plateform.Models.Models;
 using CI_plateform.Repository.Repository;
 using CI_plateform.Repository.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Session;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("dbConnectionStri
 
 builder.Services.AddScoped<UserInterface,UserRepository>();
 builder.Services.AddScoped<PlateformInterface, PlateformRepository>();
-
+builder.Services.AddSession();
+builder.Services.AddMemoryCache();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,13 +26,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();   
 
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=login}/{id?}");

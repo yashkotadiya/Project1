@@ -32,7 +32,7 @@
                                     <label class="form-check-label" for="flexCheckDefault">
                                         @Html.DisplayFor(modelItem => item.Name)
                                     </label>
-                                </div>
+                                </div> 
                             </li>
                             }
                             <li class="mx-1">
@@ -61,15 +61,17 @@
                             City
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @foreach (var item in Model) {
                             <li class="mx-1">
                                 <div class="form-check">
-                                    <input class="form-check-input checkbox" type="checkbox" value="City 1"
+                                    <input class="form-check-input checkbox" type="checkbox" value="@Html.DisplayFor(modelItem => item.Name)"
                                            id="flexCheckDefault" />
                                     <label class="form-check-label" for="flexCheckDefault">
-                                        City 1
+                                        @Html.DisplayFor(modelItem => item.Name)
                                     </label>
-                                </div>
+                                </div> 
                             </li>
+                            }
                             <li class="mx-1">
                                 <div class="form-check">
                                     <input class="form-check-input checkbox" type="checkbox" value="City 2"

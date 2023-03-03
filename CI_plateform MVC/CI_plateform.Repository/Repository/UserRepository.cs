@@ -1,12 +1,15 @@
 ﻿using CI_plateform.Models.Models;
 using CI_plateform.Models.ViewModels;
 using CI_plateform.Repository.Repository.Interface;
+/*using Microsoft.AspNetCore.Session;
+*/
 
 namespace CI_plateform.Repository.Repository
 {
     public class UserRepository : UserInterface
     {
         private readonly CiplateformContext _context;
+
 
         public UserRepository(CiplateformContext context)
         {
@@ -31,9 +34,9 @@ namespace CI_plateform.Repository.Repository
             return 1;
         }
 
-        public async Task<bool> LoginUser(RegisterViewModel model)
+        public async Task<User> LoginUser(RegisterViewModel model)
         {
-            var userExists = _context.Users.Any(u => u.Email == model.Email && u.Password == model.Password);
+            var userExists = _context.Users.Where(u => u.Email == model.Email && u.Password == model.Password).FirstOrDefault();
             return userExists;
 
         }

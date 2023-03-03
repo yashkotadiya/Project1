@@ -34,9 +34,10 @@ namespace CI_plateform.Controllers
          }*/
 
         [Route("Main/plateform", Name = "plateform")]
-        public async Task<IActionResult> plateform(City model)
+        public async Task<IActionResult> plateform(CityViewModel model)
         
         {
+            ViewBag.username = HttpContext.Session.GetString("username");
             var data = await _PlateformRepository.DisplayCityAndCountry(model);
             return View(data);
         }
