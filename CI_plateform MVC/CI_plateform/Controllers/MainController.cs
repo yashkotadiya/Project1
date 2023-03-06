@@ -34,12 +34,21 @@ namespace CI_plateform.Controllers
          }*/
 
         [Route("Main/plateform", Name = "plateform")]
-        public async Task<IActionResult> plateform(CityViewModel model)
+        public async Task<IActionResult> plateform(FilterViewModel model, int id)
         
         {
             ViewBag.username = HttpContext.Session.GetString("username");
-            var data = await _PlateformRepository.DisplayCityAndCountry(model);
+            var data = await _PlateformRepository.GetFilterData(model);
+           
+            /*    */
+            /*   return Json(data);*/
             return View(data);
+        }
+
+        public async Task<IActionResult> GetCity(int CountryId)
+        {
+            var data = await _PlateformRepository.GetCityByCountryName(CountryId);
+            return Json(data);
         }
 
 

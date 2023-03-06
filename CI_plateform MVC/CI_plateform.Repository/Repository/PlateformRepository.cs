@@ -17,15 +17,16 @@ namespace CI_plateform.Repository.Repository
         {
             _context = context;
         }
-        public async Task<CityViewModel> DisplayCityAndCountry(CityViewModel Model)
+        public async Task<FilterViewModel> GetFilterData(FilterViewModel Model)
         {
-            var filter = new CityViewModel
+           /* var city = _context.Cities.Where(a => a.CityId == id).ToList();
+            return city;*/
+            var filter = new FilterViewModel
             {
                 Cities = _context.Cities.ToList(),
-                skills = _context.Skills.ToList(),
+                Skills = _context.Skills.ToList(),
                 Contries = _context.Countries.ToList(),
-                missionThemes = _context.MissionThemes.ToList()
-
+                MissionThemes = _context.MissionThemes.ToList()
             };
           
                 return filter;
@@ -39,5 +40,16 @@ namespace CI_plateform.Repository.Repository
             
         }
 
+        public async Task<List<City>> GetCityByCountryName(int id)
+        {
+            var city = _context.Cities.Where(a => a.CountryId == id).ToList();
+            return city;
+        }
+
+       /* public Task<Mission> MissionCarsView(Mission Model)
+        {
+            var Missions = _context.Missions.ToList();
+            return Missions;
+        }*/
     }
 }

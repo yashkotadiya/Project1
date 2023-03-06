@@ -10,6 +10,8 @@ namespace CI_plateform.Repository.Repository.Interface
 {
     public interface PlateformInterface
     {
-        Task<CityViewModel> DisplayCityAndCountry(CityViewModel Model);
+        Task<FilterViewModel> GetFilterData(FilterViewModel Model);
+        /* Task<Mission> MissionCarsView(Mission Model);*/
+        Task<List<City>> GetCityByCountryName(int id);
     }
 }

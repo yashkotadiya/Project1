@@ -6,8 +6,10 @@
     "\\CI_plateform.Repository\\Repository",
     "\\CI_plateform\\Controllers",
     "\\CI_plateform\\Views",
-    "\\CI_plateform\\Views\\Home"
+    "\\CI_plateform\\Views\\Home",
+    "\\CI_plateform\\wwwroot",
+    "\\CI_plateform\\wwwroot\\js"
   ],
-  "SelectedNode": "\\CI_plateform.sln",
+  "SelectedNode": "\\CI_plateform\\wwwroot\\js\\Plateform.js",
   "PreviewInSolutionExplorer": false
 }
