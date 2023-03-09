@@ -34,14 +34,11 @@ namespace CI_plateform.Controllers
          }*/
 
         [Route("Main/plateform", Name = "plateform")]
-        public async Task<IActionResult> plateform(FilterViewModel model, int id)
+        public async Task<IActionResult> plateform(CardViewModel model)
         
         {
             ViewBag.username = HttpContext.Session.GetString("username");
-            var data = await _PlateformRepository.GetFilterData(model);
-           
-            /*    */
-            /*   return Json(data);*/
+            var data =  _PlateformRepository.GetCardData(model);
             return View(data);
         }
 
@@ -50,6 +47,11 @@ namespace CI_plateform.Controllers
             var data = await _PlateformRepository.GetCityByCountryName(CountryId);
             return Json(data);
         }
+
+       
+
+
+
 
 
         public IActionResult volunteer()

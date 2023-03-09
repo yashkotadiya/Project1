@@ -3,13 +3,10 @@
     "",
     "\\CI_plateform",
     "\\CI_plateform.Repository",
-    "\\CI_plateform.Repository\\Repository",
-    "\\CI_plateform\\Controllers",
     "\\CI_plateform\\Views",
     "\\CI_plateform\\Views\\Home",
-    "\\CI_plateform\\wwwroot",
-    "\\CI_plateform\\wwwroot\\js"
+    "\\CI_plateform\\Views\\Shared"
   ],
-  "SelectedNode": "\\CI_plateform\\wwwroot\\js\\Plateform.js",
+  "SelectedNode": "\\CI_plateform\\Views\\Shared\\Secondnav.cshtml",
   "PreviewInSolutionExplorer": false
 }

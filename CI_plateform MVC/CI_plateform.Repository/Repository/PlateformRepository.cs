@@ -17,27 +17,25 @@ namespace CI_plateform.Repository.Repository
         {
             _context = context;
         }
-        public async Task<FilterViewModel> GetFilterData(FilterViewModel Model)
+        public CardViewModel GetCardData(CardViewModel Model)
         {
-           /* var city = _context.Cities.Where(a => a.CityId == id).ToList();
-            return city;*/
-            var filter = new FilterViewModel
-            {
-                Cities = _context.Cities.ToList(),
-                Skills = _context.Skills.ToList(),
-                Contries = _context.Countries.ToList(),
-                MissionThemes = _context.MissionThemes.ToList()
-            };
-          
-                return filter;
-          
-               /* .Select(city => new City()
-                {
-                    CityId = city.CityId,
-                    Name = city.Name,
-                
-                }).ToList();*/
-            
+            var mission = _context.Missions.ToList();
+            var skill = _context.Skills.ToList();
+            var city = _context.Cities.ToList();
+            var country = _context.Countries.ToList();
+            var theme = _context.MissionThemes.ToList();
+            var missionSkill = _context.MissionSkills.ToList();
+
+            var data = new CardViewModel();
+            data.Cities = city;
+            data.Countries = country;
+            data.Missions = mission;
+            data.Skills = skill;
+            data.MissionThemes = theme;
+            data.MissionSkills = missionSkill;
+
+            return data;
+
         }
 
         public async Task<List<City>> GetCityByCountryName(int id)

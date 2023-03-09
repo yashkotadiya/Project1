@@ -1,12 +1,12 @@
 ﻿@*@model IEnumerable<CI_plateform.Models.ViewModels.CityViewModel>*@
-@model CI_plateform.Models.ViewModels.FilterViewModel
+@model CI_plateform.Models.ViewModels.CardViewModel
 
 <nav class="navbar navbar-expand-md navbar-light bg-light justify-content-end shadow bg-body p-0">
     <div class="container-fluid d-flex justify-content-between">
 
         <div class="search-bar">
             <i class="fa fa-search"></i>
-            <input type="search" class="form-control form-input" placeholder="Search Mission...">
+            <input type="search" class="form-control form-input" placeholder="Search Mission..." id="Searchtxt" onkeyup="searchMission()">
 
         </div>
 
@@ -24,13 +24,13 @@
                             Country
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @foreach (var item in Model.Contries)
+                            @foreach (var item in Model.Countries)
                             {
                                 <li class="mx-1">
-                                    <div class="form-check" id = "country">
+                                    <div class="form-check" id="country">
                                         <input class="form-check-input checkbox" type="checkbox" value="@Html.DisplayFor( modelItem => item.CountryId)"
                                            id="ddlCountry1" />
-                                        <label class="form-check-label" for="flexCheckDefault" >
+                                        <label class="form-check-label" for="flexCheckDefault">
                                             @Html.DisplayFor( modelItem => item.Name)
                                         </label>
 
@@ -45,19 +45,14 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             City
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @foreach (var item in Model.Cities)
-                            {
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="city">
+                            @*@foreach (var item in Model.Cities)
+                            {*@
                                 <li class="mx-1">
-                                    <div class="form-check" id ="city">
-                                        <input class="form-check-input checkbox" type="checkbox" value="@Html.DisplayFor(modelItem => item.CityId)"
-                                           id="ddlState" />
-                                        <label class="form-check-label" for="flexCheckDefault" id="ddlState1">
-                                            @Html.DisplayFor(modelItem => item.Name)
-                                        </label>
+                                    <div class="form-check" >
                                     </div>
                                 </li>
-                            }
+                            
 
                         </ul>
                     </li>
@@ -71,7 +66,7 @@
                             @foreach (var item in Model.MissionThemes)
                             {
                                 <li class="mx-1">
-                                    <div class="form-check">
+                                    <div class="form-check" id="Theme">
                                         <input class="form-check-input checkbox" type="checkbox" value="@Html.DisplayFor(modelItem => item.MissionThemeId)"
                                            id="flexCheckDefault" />
                                         <label class="form-check-label" for="flexCheckDefault">
@@ -122,6 +117,30 @@
 
 @*<script src="~/Scripts/jquery-1.10.2.js"></script>
 *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
     $(document).ready(function () {
 
@@ -133,49 +152,73 @@
             console.log(CountryId);
 
           // if(e.currentTarget.checked){
-            
+
                 $.ajax({
                     url: '/Main/GetCity',
                     type: 'GET',
                     data: {  "CountryId":CountryId },
                     dataType: 'json',
                     success: function (data) {
-                        console.log(data);
-                       
-                        data = JSON.parse(data);
-                        console.log(data);
-                       /* var cities = $('#city');
-                        //cities.empty();
-                        var items = "";
-                        $.each(data, function (i, item) {
-                            items += '<input type="checkbox" class="me-2" id='2124 ' value=' + item.CityId +' ><label class="form-check-label" for="exampleCheck1" >' + item.Name + '  </label>'
+
+                       var cities = $('#city');
+                       var items = "";
+                       cities.empty();
+                       //console.log(data);
+                       $.each(data, function (i, Cities) {
+
+                            items += '<li class="mx-1"><div class="form-check"> <input type="checkbox"  class="form-check-input checkbox" value=' + Cities.name +' /> <label class="form-check-label" for="exampleCheck1" >' + Cities.name + '  </label></div></li>'
                             
-                        });
-                        console.log(items);
-                        cities.prepend(items);*/
-                        //cities.html(items);
+                       });
+
+                       cities.html(items);
+
+
                     }
                 });
-          /*  }else{
-                 $.ajax({
-                    url: '/Home/GetCity',
-                    type: 'GET',
-                    data: { CountryId: CountryId },
-                    dataType: 'json',
-                    success: function (data) {
-                        var cities = $('#city');
-                        
-                        var items = "";
-                        $.each(data, function (i, item) {
-                            var id = "#"+ item.Name.replaceAll(' ','');
-                            console.log;
-                            $(id).parent().parent().remove();
-                        });
-                        
-                    }
-                });
-            }*/
+        
         });
 
      });
 </script>
+
+<script>
+    $(document).ready(function () {
+
+
+
+         $('#country input[type=checkbox]').change(function (e){
+
+            var CountryId = $(this).val().is(':checked');
+
+            console.log(CountryId);
+
+          // if(e.currentTarget.checked){
+
+                $.ajax({
+                    url: '/Main/GetCity',
+                    type: 'GET',
+                    data: {  "CountryId":CountryId },
+                    dataType: 'json',
+                    success: function (data) {
+
+                       var cities = $('#city');
+                       var items = "";
+                       cities.empty();
+                       //console.log(data);
+                       $.each(data, function (i, Cities) {
+
+                            items += '<li class="mx-1"><div class="form-check"> <input type="checkbox"  class="form-check-input checkbox" value=' + Cities.name +' /> <label class="form-check-label" for="exampleCheck1" >' + Cities.name + '  </label></div></li>'
+                            
+                       });
+
+                       cities.html(items);
+
+
+                    }
+                });
+        
+        });
+
+     });
+</script>
+

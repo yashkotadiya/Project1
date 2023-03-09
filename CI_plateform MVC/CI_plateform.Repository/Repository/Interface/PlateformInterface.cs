@@ -10,7 +10,7 @@ namespace CI_plateform.Repository.Repository.Interface
 {
     public interface PlateformInterface
     {
-        Task<FilterViewModel> GetFilterData(FilterViewModel Model);
+        CardViewModel GetCardData(CardViewModel Model);
         /* Task<Mission> MissionCarsView(Mission Model);*/
         Task<List<City>> GetCityByCountryName(int id);
     }

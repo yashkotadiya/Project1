@@ -51,5 +51,84 @@
 </body>
 
 <script src="~/js/Plateform.js"></script>
- 
+<script>
+    function searchMission()
+        {
+
+            input = document.getElementById("Searchtxt").value;
+            filter = input.toLowerCase();
+            
+            card = document.getElementsByClassName("xyz");
+            
+            for (i = 0; i < card.length; i++)
+            {
+                
+                var title = card[i].getElementsByClassName("cardHeading")[0];
+                console.log(title);
+                if (title.innerHTML.toLowerCase().indexOf(filter) != -1)
+                {
+                    card[i].style.display = "";
+                }
+                else
+                {
+                    card[i].style.display = "none";
+
+
+                }
+            }
+        }
+</script>
+ <script>
+
+     $(document).ready(function () {
+           $('#Theme input[type=checkbox]').on('change',function(){
+               
+                var selectTheme = $('input[type="checkbox"]:checked').map(function () {
+                     return $(this).next().text();
+                }).get();
+              
+
+        /*    var selectTheme = [];
+             $('input[type="checkbox"]:checked').each(function() {
+                     selectTheme.push($(this).next().text());
+                });*/
+
+                console.log(selectTheme);
+
+                if (selectTheme.length == 0) {
+            
+                    $('.filtercard').show();
+                 }
+                 else
+                 {
+                        
+
+                        $('.filtercard').each(function () {
+                        var cardTheme = $(this).find('.card-title').text();
+
+                        selectTheme.some(function (value) {
+                            if( cardTheme.trim().toLowerCase() == value.trim().toLowerCase())
+                            {
+                                console.log(cardTheme);
+                                console.log(value);
+                               // $(this).show();
+                                $(".xyz").css("display", "block");
+                                 console.log("hi");
+                            }
+                            else{
+                                console.log(cardTheme);
+                                console.log(value);
+                                //console.log("hide");
+                                $(".xyz").css("display", "none");
+                                //$(this).hide();
+                            }
+                        });     
+                    });
+                }
+
+           });
+   
+     });
+</script>
+
 </html>

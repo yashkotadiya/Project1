@@ -1,4 +1,4 @@
-﻿@model CI_plateform.Models.ViewModels.FilterViewModel
+﻿@model CI_plateform.Models.ViewModels.CardViewModel
 @*@model IEnumerable<CI_plateform.Models.ViewModels.CityViewModel>*@
 
 
@@ -45,19 +45,21 @@
         @Html.Partial("Gridcard")
         @Html.Partial("Gridcard")*@
 
-        <div class="col-lg-4 col-sm-12 col-xs-12 mb-3">
-            <div class="card">
+        @foreach(var item in Model.Missions)
+        {
+            <div class="col-lg-4 col-sm-12 col-xs-12 mb-3 filtercard" >
+            <div class="card xyz" >
                 <div class="grid-img">
                     <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
                          class="card-img-top" alt="...">
                     <div class="d-flex justify-content-center">
-                        <p class="card-title">Nutrition</p>
+                        <p class="card-title"> @item.Theme.Title</p>
                     </div>
                     <div>
 
                         <div class="location over-buttons px-3 py-1 ">
                             <img src="/images/pin.png" />
-                            <span>Toronto</span>
+                            <span>@item.City.Name</span>
                         </div>
                         <div class="add-favourite over-buttons px-3 py-1">
                             <img src="/images/heart.png" />
@@ -72,17 +74,11 @@
 
 
                     <div class="m-2">
-                        <h4 class="card-text">
-                            Some quick example text to build on the card title and make up the
-                            bulk of the card's
-                            content.
+                        <h4 class="card-text cardHeading">
+                            @item.Title
                         </h4>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis corrupti nesciunt
-                            mollitia voluptate minus
-                            harum, sequi fugiat quis excepturi ipsum animi quod reiciendis voluptatibus aperiam
-                            alias unde, esse possimus
-                            asperiores?
+                           @item.ShortDescription
                         </p>
                         <div class="d-flex justify-content-between">
                             <p class="review-stat">Tree Canada</p>
@@ -99,7 +95,7 @@
                     <div class="border-top border-bottom">
                         <div class="d-flex justify-content-center">
 
-                            <p class="DateTime-title">From date to until date</p>
+                            <p class="DateTime-title">@Convert.ToDateTime(item.StartDate).ToString("dd-MM-yyyy") to @Convert.ToDateTime(item.EndDate).ToString("dd-MM-yyyy")</p>
                         </div>
 
                         <div class="d-flex flex-wrap justify-content-around">
@@ -127,8 +123,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-sm-12 col-xs-12 mb-3">
+        </div>   
+        }
+        
+       @* <div class="col-lg-4 col-sm-12 col-xs-12 mb-3">
             <div class="card">
                 <div class="grid-img">
                     <img src="/images/Education-Supplies-for-Every--Pair-of-Shoes-Sold-1.png" class="card-img-top"
@@ -534,7 +532,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
             
     </div>
 </div>
@@ -568,4 +566,3 @@
         </li>
     </ul>
 </nav>
-
