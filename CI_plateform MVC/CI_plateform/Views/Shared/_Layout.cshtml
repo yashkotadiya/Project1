@@ -58,7 +58,7 @@
             input = document.getElementById("Searchtxt").value;
             filter = input.toLowerCase();
             
-            card = document.getElementsByClassName("xyz");
+            card = document.getElementsByClassName("filtercard");
             
             for (i = 0; i < card.length; i++)
             {
@@ -78,13 +78,56 @@
             }
         }
 </script>
+
+
+
+<script>
+    $(document).ready(function () {
+
+         $('.fCountry input[type=checkbox]').click(function (e){
+            var CountryId = $(this).val();
+
+            console.log(CountryId);
+
+          // if(e.currentTarget.checked){
+
+                $.ajax({
+                    url: '/Main/GetCity',
+                    type: 'GET',
+                    data: {  "CountryId":CountryId },
+                    dataType: 'json',
+                    success: function (data) {
+
+                       var cities = $('#city');
+                       var items = "";
+                       cities.empty();
+                       //console.log(data);
+                       $.each(data, function (i, Cities) {
+                          
+
+                            items += '<li class="mx-1"><div class="form-check" > <input type="checkbox" class="form-check-input checkbox" value='+ Cities['cityId'] +' /> <label class="form-check-label" for="exampleCheck1" >' + Cities.name + '  </label></div></li>'
+                            
+                       });
+
+                       cities.html(items);
+
+
+                    }
+                });
+        
+        });
+
+     });
+</script>
+@*---------------------------------------------------------------filter for theme-----------------------------------------------------------*@
  <script>
 
      $(document).ready(function () {
-           $('#Theme input[type=checkbox]').on('change',function(){
+           $('.fTheme input[type=checkbox]').on('change',function(){
                
-                var selectTheme = $('input[type="checkbox"]:checked').map(function () {
-                     return $(this).next().text();
+               
+               var selectTheme = $('input[type="checkbox"]:checked').map(function () {
+                     return $(this).val();
                 }).get();
               
 
@@ -96,33 +139,29 @@
                 console.log(selectTheme);
 
                 if (selectTheme.length == 0) {
-            
+                    console.log("no theme")
                     $('.filtercard').show();
-                 }
-                 else
-                 {
+                }
+                else
+                {
+                   $('.filtercard').each(function () {
+                   var cardTheme = $(this).find('.Card-ThemeId').val();
                         
-
-                        $('.filtercard').each(function () {
-                        var cardTheme = $(this).find('.card-title').text();
-
-                        selectTheme.some(function (value) {
-                            if( cardTheme.trim().toLowerCase() == value.trim().toLowerCase())
-                            {
-                                console.log(cardTheme);
-                                console.log(value);
-                               // $(this).show();
-                                $(".xyz").css("display", "block");
-                                 console.log("hi");
-                            }
-                            else{
-                                console.log(cardTheme);
-                                console.log(value);
-                                //console.log("hide");
-                                $(".xyz").css("display", "none");
-                                //$(this).hide();
-                            }
-                        });     
+                   var x = selectTheme.some(function (selectTheme) {
+                                return cardTheme === selectTheme;
+                            });
+                            
+                           if(x)
+                           {
+                                $(this).show();      
+                           }
+                           else
+                           {
+                               
+                               $(this).hide();
+                                
+                           }
+                          
                     });
                 }
 
@@ -130,5 +169,286 @@
    
      });
 </script>
+@*---------------------------------------------------------------filter for city-----------------------------------------------------------*@
+
+ <script>
+
+     $(document).ready(function () {
+           $('.fCity').on('change','input[type=checkbox]',function(){
+               
+                var selectedCity = $('input[type="checkbox"]:checked').map(function () {
+                     return $(this).val();
+                }).get();
+              
+
+        /*    var selectTheme = [];
+             $('input[type="checkbox"]:checked').each(function() {
+                     selectTheme.push($(this).next().text());
+                });*/
+
+                console.log(selectedCity);
+
+                if (selectedCity.length == 0) {
+                    console.log("no theme")
+                    $('.filtercard').show();
+                 }
+                 else
+                 {
+                        $('.filtercard').each(function () {
+                        var cardCity = $(this).find('.Card-CityId').val();
+                        
+                        var x = selectedCity.some(function (selectedCity) {
+                            
+                                return cardCity === selectedCity;
+                            });
+                            
+                        if(x)
+                        {
+                            $(this).show();      
+                        }
+                        else{
+                               
+                           $(this).hide();
+                                
+                        }
+                          
+                    });
+                }
+
+           });
+   
+     });
+</script>
+@*---------------------------------------------------------------filter for skill-----------------------------------------------------------*@
+
+ <script>
+
+     $(document).ready(function () {
+           $('.fSkill input[type=checkbox]').on('change',function(){
+               
+                var selectedSkill = $('input[type="checkbox"]:checked').map(function () {
+                     return $(this).val();
+                }).get();
+              
+
+        /*    var selectTheme = [];
+             $('input[type="checkbox"]:checked').each(function() {
+                     selectTheme.push($(this).next().text());
+                });*/
+
+                console.log(selectedSkill);
+
+                if (selectedSkill.length == 0) {
+                    console.log("no theme")
+                    $('.filtercard').show();
+                 }
+                 else
+                 {
+                        $('.filtercard').each(function () {
+                        
+                        var cardSkill = $(this).find('.Card-SkillId').map(function () { return $(this).val(); }).get();
+                        console.log(cardSkill);
+                     
+                        var x = selectedSkill.some(function (selectedSkill) 
+                        {
+                            return cardSkill.some(function (cardSkill) 
+                            {
+                                return cardSkill == selectedSkill;
+                            })
+                        })  
+
+                        if(x)
+                        {
+                            $(this).show();      
+                        }
+                        else{
+                               
+                           $(this).hide();
+                                
+                        }
+                          
+                    });
+                }
+
+           });
+   
+     });
+   
+
+</script>
+@*
+<script>
+    
+function compareCity(selectedCities, cardCity) {
+    let isMatch = selectedCities.some(function (selectedCity) {
+        return cardCity == selectedCity;
+    })
+    return isMatch;
+}
+
+function compareTheme(selectedThemes, cardTheme) {
+    let isMatch = selectedThemes.some(function (selectedTheme) {
+        return cardTheme == selectedTheme;
+    })
+    return isMatch;
+}
+
+function compareSkill(selectedSkills, cardSkills) {
+    let isMatch = selectedSkills.some(function (selectedSkill) {
+        return cardSkills.some(function (cardSkill) {
+            return cardSkill == selectedSkill;
+        })
+    })
+    return isMatch;
+}
+
+
+
+const Filter = () => {
+
+    var selectedCities = $('#dlCity input[type="checkbox"]:checked').map(function () { return $(this).next().text(); }).get();
+
+    var selectedThemes = $('#dlTheme input[type="checkbox"]:checked').map(function () { return $(this).next().text(); }).get();
+
+    var selectedSkills = $('#dlSkill input[type="checkbox"]:checked').map(function () { return $(this).next().text(); }).get();
+
+    console.log(selectedCities);
+     console.log(selectedThemes);
+      console.log(selectedSkills);
+
+    let atleastOneCity = (selectedCities.length != 0);
+    let noCity = (selectedCities.length == 0);
+
+    let atleastOneTheme = (selectedThemes.length != 0);
+    let noTheme = (selectedThemes.length == 0);
+
+    let atleastOneSkill = (selectedSkills.length != 0);
+    let noSkill = (selectedSkills.length == 0);
+
+
+    if (noCity && noTheme && noSkill && selectedCountry == null) {
+        // If no themes are selected, show all cards
+        console.log("no themes and skills selected");
+        $('.filtercard').show();
+    }
+    else {
+        $('.filtercard').each(function () {
+            var cardCountry = $(this).find('.Card-CountryId').val();
+            let cardCity = $(this).find('.Card-CityId').val();
+            let cardTheme = $(this).find('.Card-ThemeId').val();
+            let cardSkills = $(this).find('.Card-SkillId').map(function () { return $(this).val(); }).get();
+
+            if (selectedCountry != null) {
+                console.log(cardCountry);
+                if (atleastOneCity) {
+                    if (atleastOneTheme) {
+                        if (atleastOneSkill) {
+                            let isMatch = (selectedCountry == cardCountry) && compareCity(selectedCities, cardCity) && compareTheme(selectedThemes, cardTheme) && compareSkill(selectedSkills, cardSkills);
+                            (isMatch) ? $(this).show() : $(this).hide();
+                        }
+                        else {
+                            let isMatch = (selectedCountry == cardCountry) && compareCity(selectedCities, cardCity) && compareTheme(selectedThemes, cardTheme);
+                            (isMatch) ? $(this).show() : $(this).hide();
+                        }
+                    }
+                    else {
+                        if (atleastOneSkill) {
+                            let isMatch = (selectedCountry == cardCountry) && compareCity(selectedCities, cardCity) && compareSkill(selectedSkills, cardSkills);
+                            (isMatch) ? $(this).show() : $(this).hide();
+                        }
+                        else {
+                            let isMatch = (selectedCountry == cardCountry) && compareCity(selectedCities, cardCity);
+                            (isMatch) ? $(this).show() : $(this).hide();
+                        }
+                    }
+                }
+                else {
+                    if (atleastOneTheme) {
+                        if (atleastOneSkill) {
+                            let isMatch = (selectedCountry == cardCountry) && compareTheme(selectedThemes, cardTheme) && compareSkill(selectedSkills, cardSkills);
+                            (isMatch) ? $(this).show() : $(this).hide();
+                        }
+                        else {
+                            let isMatch = (selectedCountry == cardCountry) && compareTheme(selectedThemes, cardTheme);
+                            (isMatch) ? $(this).show() : $(this).hide();
+                        }
+                    }
+                    else {
+                        if (atleastOneSkill) {
+                            let isMatch = (selectedCountry == cardCountry) && compareSkill(selectedSkills, cardSkills);
+                            (isMatch) ? $(this).show() : $(this).hide();
+                        }
+                        else {
+                            let isMatch = (selectedCountry == cardCountry);
+                            (isMatch) ? $(this).show() : $(this).hide();
+
+                        }
+                    }
+                }
+            }
+            else {
+                if (atleastOneCity) {
+                    if (atleastOneTheme) {
+                        if (atleastOneSkill) {
+                            let isMatch = compareCity(selectedCities, cardCity) && compareTheme(selectedThemes, cardTheme) && compareSkill(selectedSkills, cardSkills);
+                            (isMatch) ? $(this).find('.filtercard').show() : $(this).find('.filtercard').hide();
+                        }
+                        else {
+                            let isMatch = compareCity(selectedCities, cardCity) && compareTheme(selectedThemes, cardTheme);
+                            (isMatch) ? $(this).find('.filtercard').show() : $(this).find('.filtercard').hide();
+                        }
+                    }
+                    else {
+                        if (atleastOneSkill) {
+                            let isMatch = compareCity(selectedCities, cardCity) && compareSkill(selectedSkills, cardSkills);
+                            (isMatch) ? $(this).find('.filtercard').show() : $(this).find('.filtercard').hide();
+                        }
+                        else {
+                            let isMatch = compareCity(selectedCities, cardCity);
+                            (isMatch) ? $(this).find('.filtercard').show() : $(this).find('.filtercard').hide();
+                        }
+                    }
+                }
+                else {
+                    if (atleastOneTheme) {
+                        if (atleastOneSkill) {
+                            let isMatch = compareTheme(selectedThemes, cardTheme) && compareSkill(selectedSkills, cardSkills);
+                            (isMatch) ? $(this).show() : $(this).hide();
+                        }
+                        else {
+
+                            let isMatch = compareTheme(selectedThemes, cardTheme);
+                            (isMatch) ? $(this).show() : $(this).hide();
+                        }
+                    }
+                    else {
+                        if (atleastOneSkill) {
+                            let isMatch = compareSkill(selectedSkills, cardSkills);
+                            (isMatch) ? $(this).show() : $(this).hide();
+                        }
+                        else {
+                            $(this).show();
+                        }
+                    }
+                }
+            }
+
+        });
+
+
+    }
+}
+/*var allDropdowns = $('.filter ');
+allDropdowns.each(function () {
+     console.log("hhhh");
+    let dropdown = $(this);
+   
+});*/
+
+ $('.xyz').change('input[type="checkbox"]',function () {
+       
+        Filter();
+    });
+</script>*@
 
 </html>

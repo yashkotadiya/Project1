@@ -42,9 +42,15 @@ namespace CI_plateform.Controllers
             return View(data);
         }
 
-        public async Task<IActionResult> GetCity(int CountryId)
+        public  IActionResult GetCity(int CountryId)
         {
-            var data = await _PlateformRepository.GetCityByCountryName(CountryId);
+            var data = _PlateformRepository.GetCityByCountryName(CountryId);
+
+            return Json(data);
+        }
+        public IActionResult SortingMission(String sortOrder)
+        {
+            var data = _PlateformRepository.GetSortingMission(sortOrder);
             return Json(data);
         }
 

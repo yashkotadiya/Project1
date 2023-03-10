@@ -19,7 +19,7 @@ namespace CI_plateform.Repository.Repository
         }
         public CardViewModel GetCardData(CardViewModel Model)
         {
-            var mission = _context.Missions.ToList();
+           var mission = _context.Missions.ToList();
             var skill = _context.Skills.ToList();
             var city = _context.Cities.ToList();
             var country = _context.Countries.ToList();
@@ -38,10 +38,30 @@ namespace CI_plateform.Repository.Repository
 
         }
 
-        public async Task<List<City>> GetCityByCountryName(int id)
+        public List<City> GetCityByCountryName(int id)
         {
             var city = _context.Cities.Where(a => a.CountryId == id).ToList();
             return city;
+        }
+
+        public List<Mission> GetSortingMission(string sortOrder)
+        {
+            var mission = _context.Missions.ToList();
+            switch (sortOrder)
+            {
+                case "Newest":
+                    mission = _context.Missions.OrderBy(s => s.CreatedAt).ToList();
+                    break;
+                case "Oldest":
+                    mission = _context.Missions.OrderByDescending(s => s.CreatedAt).ToList();
+                    break;
+                case "Deadline":
+                    mission = _context.Missions.OrderBy(s => s.EndDate).ToList();
+                    break;
+
+            }
+            return mission;
+
         }
 
        /* public Task<Mission> MissionCarsView(Mission Model)

@@ -1,4 +1,6 @@
-﻿@model CI_plateform.Models.ViewModels.CardViewModel
+﻿
+
+@model CI_plateform.Models.ViewModels.CardViewModel
 @*@model IEnumerable<CI_plateform.Models.ViewModels.CityViewModel>*@
 
 
@@ -20,10 +22,10 @@
                 <!-- &nbsp; -->
                 <img src="~/images/drop-down.png" class="ic-down ms-5">
             </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <ul class="dropdown-menu dropdown-menu-end sort">
+                <li><a class="dropdown-item" >Newest</a></li>
+                <li><a class="dropdown-item" >Oldest</a></li>
+                <li><a class="dropdown-item" >Deadline</a></li>
             </ul>
         </div>
         <button class="btn btn-outline-light col" onclick="opengrid()">
@@ -49,17 +51,30 @@
         {
             <div class="col-lg-4 col-sm-12 col-xs-12 mb-3 filtercard" >
             <div class="card xyz" >
+
+
+                <input type="hidden" value="@item.Country.CountryId" class="Card-CountryId" />              
+                <input type="hidden" value="@item.City.CityId" class="Card-CityId" />
+                <input type="hidden" value="@item.Theme.MissionThemeId" class="Card-ThemeId" />
+
+                @foreach (var missionskill in item.MissionSkills)
+                {
+                    <input type="hidden" value="@missionskill.SkillId" class="Card-SkillId" />
+                }
+
+
                 <div class="grid-img">
                     <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-1.png"
                          class="card-img-top" alt="...">
                     <div class="d-flex justify-content-center">
                         <p class="card-title"> @item.Theme.Title</p>
+                       
                     </div>
                     <div>
 
                         <div class="location over-buttons px-3 py-1 ">
                             <img src="/images/pin.png" />
-                            <span>@item.City.Name</span>
+                            <span >@item.City.Name</span>
                         </div>
                         <div class="add-favourite over-buttons px-3 py-1">
                             <img src="/images/heart.png" />
@@ -566,3 +581,33 @@
         </li>
     </ul>
 </nav>
+
+
+
+<script>
+    $(document).ready(function () {
+
+         $('.sort li a').click(function (e){
+            var  sortOrder= $(this).text();
+
+            //console.log(sortOrder);
+
+          // if(e.currentTarget.checked){
+
+                $.ajax({
+                    url: '/Main/SortingMission',
+                    type: 'POST',
+                    data: {  "sortOrder":sortOrder },
+                    //dataType: 'json',
+                    success: function (data) {
+                        
+                       
+                    }
+                });
+
+                 
+        
+        });
+
+     });
+</script>

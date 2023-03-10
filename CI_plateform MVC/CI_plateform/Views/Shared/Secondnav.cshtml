@@ -23,15 +23,15 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" type="submit">
                             Country
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu filter fCountry" aria-labelledby="navbarDropdown">
                             @foreach (var item in Model.Countries)
                             {
                                 <li class="mx-1">
-                                    <div class="form-check" id="country">
-                                        <input class="form-check-input checkbox" type="checkbox" value="@Html.DisplayFor( modelItem => item.CountryId)"
-                                           id="ddlCountry1" />
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            @Html.DisplayFor( modelItem => item.Name)
+                                    <div class="form-check" >
+                                        <input class="form-check-input checkbox" type="checkbox" value="@item.CountryId"
+                                         id="flexCheckDefault" />
+                                        <label class="form-check-label" for="flexCheckDefault" >
+                                            @item.Name
                                         </label>
 
                                     </div>
@@ -45,7 +45,7 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             City
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="city">
+                        <ul class="dropdown-menu fCity" aria-labelledby="navbarDropdown" id="city">
                             @*@foreach (var item in Model.Cities)
                             {*@
                                 <li class="mx-1">
@@ -61,16 +61,16 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Theme
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu  fTheme" aria-labelledby="navbarDropdown">
 
                             @foreach (var item in Model.MissionThemes)
                             {
                                 <li class="mx-1">
-                                    <div class="form-check" id="Theme">
-                                        <input class="form-check-input checkbox" type="checkbox" value="@Html.DisplayFor(modelItem => item.MissionThemeId)"
+                                    <div class="form-check" >
+                                        <input class="form-check-input checkbox" type="checkbox" value="@item.MissionThemeId"
                                            id="flexCheckDefault" />
                                         <label class="form-check-label" for="flexCheckDefault">
-                                            @Html.DisplayFor(modelItem => item.Title)
+                                            @item.Title
                                         </label>
                                     </div>
                                 </li>
@@ -83,16 +83,17 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Skills
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end fSkill" aria-labelledby="navbarDropdown">
                             @foreach (var item in Model.Skills)
                             {
                                 <li class="mx-1">
                                     <div class="form-check">
-                                        <input class="form-check-input checkbox" type="checkbox" value="@Html.DisplayFor(modelItem => item.SkillId)"
+                                        <input class="form-check-input checkbox" type="checkbox" value="@item.SkillId"
                                            id="flexCheckDefault" />
                                         <label class="form-check-label" for="flexCheckDefault">
-                                            @Html.DisplayFor(modelItem => item.SkillName)
+                                            @item.SkillName
                                         </label>
+                                        
                                     </div>
                                 </li>
                             }
@@ -127,61 +128,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-    $(document).ready(function () {
-
-
-
-         $('#country input[type=checkbox]').click(function (e){
-            var CountryId = $(this).val();
-
-            console.log(CountryId);
-
-          // if(e.currentTarget.checked){
-
-                $.ajax({
-                    url: '/Main/GetCity',
-                    type: 'GET',
-                    data: {  "CountryId":CountryId },
-                    dataType: 'json',
-                    success: function (data) {
-
-                       var cities = $('#city');
-                       var items = "";
-                       cities.empty();
-                       //console.log(data);
-                       $.each(data, function (i, Cities) {
-
-                            items += '<li class="mx-1"><div class="form-check"> <input type="checkbox"  class="form-check-input checkbox" value=' + Cities.name +' /> <label class="form-check-label" for="exampleCheck1" >' + Cities.name + '  </label></div></li>'
-                            
-                       });
-
-                       cities.html(items);
-
-
-                    }
-                });
-        
-        });
-
-     });
-</script>
-
-<script>
+@*<script>
     $(document).ready(function () {
 
 
@@ -222,3 +169,4 @@
      });
 </script>
 
+*@

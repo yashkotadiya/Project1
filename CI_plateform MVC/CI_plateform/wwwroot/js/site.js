@@ -3,9 +3,6 @@
 
 // Write your JavaScript code.
 
-
-
-
 function compareCity(selectedCities, cardCity) {
     let isMatch = selectedCities.some(function (selectedCity) {
         return cardCity == selectedCity;
@@ -65,6 +62,7 @@ const Filter = () => {
 
             if (selectedCountry != null) {
                 console.log(cardCountry);
+
                 if (atleastOneCity) {
                     if (atleastOneTheme) {
                         if (atleastOneSkill) {

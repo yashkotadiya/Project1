@@ -11,7 +11,9 @@ namespace CI_plateform.Repository.Repository.Interface
     public interface PlateformInterface
     {
         CardViewModel GetCardData(CardViewModel Model);
-        /* Task<Mission> MissionCarsView(Mission Model);*/
-        Task<List<City>> GetCityByCountryName(int id);
+
+        List<Mission> GetSortingMission(string sortOrder);
+        
+        List<City> GetCityByCountryName(int id);
     }
 }
