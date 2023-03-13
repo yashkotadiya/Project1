@@ -1,0 +1,172 @@
+﻿@*@model IEnumerable<CI_plateform.Models.ViewModels.CityViewModel>*@
+@model CI_plateform.Models.ViewModels.CardViewModel
+
+<nav class="navbar navbar-expand-md navbar-light bg-light justify-content-end shadow bg-body p-0">
+    <div class="container-fluid d-flex justify-content-between">
+
+        <div class="search-bar">
+            <i class="fa fa-search"></i>
+            <input type="search" name='search' class="form-control form-input" placeholder="Search Mission..." id="Searchtxt" onkeyup="SearchMission()">
+
+        </div>
+
+        <div class="">
+            <div class="collapse navbar-collapse offcanvas d-flex offcanvas-end " tabindex="-1"
+                 id="offcanvasExample1" aria-labelledby="offcanvasExampleLabel1">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle  p-3 text-dark"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" type="submit">
+                            Country
+                        </button>
+                        <ul class="dropdown-menu filter fCountry" aria-labelledby="navbarDropdown" onchange="SearchMission()">
+                            @foreach (var item in Model.Countries)
+                            {
+                                <li class="mx-1">
+                                    <div class="form-check" >
+                                        <input class="form-check-input checkbox" type="checkbox" value="@item.CountryId"
+                                         id="flexCheckDefault" />
+                                        <label class="form-check-label" for="flexCheckDefault" >
+                                            @item.Name
+                                        </label>
+
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle border-0 bg-transparent p-3 text-dark"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            City
+                        </button>
+                        <ul class="dropdown-menu fCity" aria-labelledby="navbarDropdown" id="city" onchange="SearchMission()">
+                            @*@foreach (var item in Model.Cities)
+                            {*@
+                                <li class="mx-1">
+                                    <div class="form-check" >
+                                    </div>
+                                </li>
+                            
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle border-0 bg-transparent p-3 text-dark"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Theme
+                        </button>
+                        <ul class="dropdown-menu  fTheme" aria-labelledby="navbarDropdown" onchange="SearchMission()">
+
+                            @foreach (var item in Model.MissionThemes)
+                            {
+                                <li class="mx-1">
+                                    <div class="form-check" >
+                                        <input class="form-check-input checkbox" type="checkbox" value="@item.MissionThemeId"
+                                           id="flexCheckDefault" />
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            @item.Title
+                                        </label>
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle border-0 bg-transparent p-3 text-dark"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Skills
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end fSkill" aria-labelledby="navbarDropdown" onchange="SearchMission()">
+                            @foreach (var item in Model.Skills)
+                            {
+                                <li class="mx-1">
+                                    <div class="form-check">
+                                        <input class="form-check-input checkbox" type="checkbox" value="@item.SkillId"
+                                           id="flexCheckDefault" />
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            @item.SkillName
+                                        </label>
+                                        
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="btn btn-primary navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample1 " aria-controls="offcanvasExample1 " aria-expanded="false"
+                style="height: 50px">
+            <span class="border-0"><img src="/images/filter.png" alt="filter" /></span>
+        </button>
+
+    </div>
+</nav>
+<div class="container-fluid mt-2">
+    <div class="d-flex filters-section flex-wrap mt-2"></div>
+</div>
+
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>
+*@
+
+
+
+
+
+
+
+
+
+
+@*<script>
+    $(document).ready(function () {
+
+
+
+         $('#country input[type=checkbox]').change(function (e){
+
+            var CountryId = $(this).val().is(':checked');
+
+            console.log(CountryId);
+
+          // if(e.currentTarget.checked){
+
+                $.ajax({
+                    url: '/Main/GetCity',
+                    type: 'GET',
+                    data: {  "CountryId":CountryId },
+                    dataType: 'json',
+                    success: function (data) {
+
+                       var cities = $('#city');
+                       var items = "";
+                       cities.empty();
+                       //console.log(data);
+                       $.each(data, function (i, Cities) {
+
+                            items += '<li class="mx-1"><div class="form-check"> <input type="checkbox"  class="form-check-input checkbox" value=' + Cities.name +' /> <label class="form-check-label" for="exampleCheck1" >' + Cities.name + '  </label></div></li>'
+                            
+                       });
+
+                       cities.html(items);
+
+
+                    }
+                });
+        
+        });
+
+     });
+</script>
+
+*@

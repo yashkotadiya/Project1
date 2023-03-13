@@ -23,7 +23,7 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" type="submit">
                             Country
                         </button>
-                        <ul class="dropdown-menu filter fCountry" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu filter fCountry" aria-labelledby="navbarDropdown" onchange="SearchMission()">
                             @foreach (var item in Model.Countries)
                             {
                                 <li class="mx-1">
@@ -45,7 +45,7 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             City
                         </button>
-                        <ul class="dropdown-menu fCity" aria-labelledby="navbarDropdown" id="city">
+                        <ul class="dropdown-menu fCity" aria-labelledby="navbarDropdown" id="city" onchange="SearchMission()">
                             @*@foreach (var item in Model.Cities)
                             {*@
                                 <li class="mx-1">
@@ -61,7 +61,7 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Theme
                         </button>
-                        <ul class="dropdown-menu  fTheme" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu  fTheme" aria-labelledby="navbarDropdown" onchange="SearchMission()">
 
                             @foreach (var item in Model.MissionThemes)
                             {
@@ -83,7 +83,7 @@
                                 id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Skills
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end fSkill" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end fSkill" aria-labelledby="navbarDropdown" onchange="SearchMission()">
                             @foreach (var item in Model.Skills)
                             {
                                 <li class="mx-1">

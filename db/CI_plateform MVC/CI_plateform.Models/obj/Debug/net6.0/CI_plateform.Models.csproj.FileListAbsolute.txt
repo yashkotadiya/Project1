@@ -1,0 +1,56 @@
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.deps.json
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.dll
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.pdb
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.csproj.AssemblyReference.cache
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.AssemblyInfoInputs.cache
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.AssemblyInfo.cs
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.csproj.CoreCompileInputs.cache
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.dll
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\refint\CI_plateform.Models.dll
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.pdb
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\ref\CI_plateform.Models.dll
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.runtimeconfig.json
+D:\tatvasoft\6 month\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.genruntimeconfig.cache
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.deps.json
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.runtimeconfig.json
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.dll
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\ref\CI_plateform.Models.dll
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.pdb
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.csproj.AssemblyReference.cache
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.AssemblyInfoInputs.cache
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.AssemblyInfo.cs
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.csproj.CoreCompileInputs.cache
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.dll
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\ref\CI_plateform.Models.dll
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.pdb
+D:\yash\Assignment\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.genruntimeconfig.cache
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.deps.json
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.runtimeconfig.json
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.dll
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\ref\CI_plateform.Models.dll
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.pdb
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.csproj.AssemblyReference.cache
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.AssemblyInfoInputs.cache
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.AssemblyInfo.cs
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.csproj.CoreCompileInputs.cache
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.dll
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\ref\CI_plateform.Models.dll
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.pdb
+D:\yash\project11111\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.genruntimeconfig.cache
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.deps.json
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.runtimeconfig.json
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.dll
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\ref\CI_plateform.Models.dll
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\bin\Debug\net6.0\CI_plateform.Models.pdb
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.csproj.AssemblyReference.cache
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.AssemblyInfoInputs.cache
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.AssemblyInfo.cs
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.csproj.CoreCompileInputs.cache
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.dll
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\ref\CI_plateform.Models.dll
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.pdb
+D:\yash\db\CI_plateform MVC\CI_plateform.Models\obj\Debug\net6.0\CI_plateform.Models.genruntimeconfig.cache

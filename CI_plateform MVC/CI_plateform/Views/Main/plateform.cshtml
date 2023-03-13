@@ -7,6 +7,7 @@
 @{
     ViewData["Title"] = "Missoin Listing";
 }
+
 @Html.Partial("Secondnav")
 <div class=" container-fluid justify-content-between d-flex pt-3">
     <div class="">
@@ -23,9 +24,9 @@
                 <img src="~/images/drop-down.png" class="ic-down ms-5">
             </button>
             <ul class="dropdown-menu dropdown-menu-end sort">
-                <li><a class="dropdown-item" >Newest</a></li>
-                <li><a class="dropdown-item" >Oldest</a></li>
-                <li><a class="dropdown-item" >Deadline</a></li>
+                <li><a class="dropdown-item" asp-controller="Main" asp-action="plateform" asp-route-sortOrder="Newest" >Newest</a></li>
+                <li><a class="dropdown-item" asp-controller="Main" asp-action="plateform" asp-route-sortOrder="Oldest">Oldest</a></li>
+                <li><a class="dropdown-item" asp-controller="Main" asp-action="plateform" asp-route-sortOrder="Deadline">Deadline</a></li>
             </ul>
         </div>
         <button class="btn btn-outline-light col" onclick="opengrid()">
@@ -41,13 +42,11 @@
 
 <div class="container-fluid mt-4 gridview" id="gridview">
     <div class="row">
-        @*@Html.Partial("Gridcard")
+        
         @Html.Partial("Gridcard")
-        @Html.Partial("Gridcard")
-        @Html.Partial("Gridcard")
-        @Html.Partial("Gridcard")*@
+       
 
-        @foreach(var item in Model.Missions)
+       @* @foreach(var item in Model.Missions)
         {
             <div class="col-lg-4 col-sm-12 col-xs-12 mb-3 filtercard" >
             <div class="card xyz" >
@@ -139,7 +138,7 @@
                 </div>
             </div>
         </div>   
-        }
+        }*@
         
        @* <div class="col-lg-4 col-sm-12 col-xs-12 mb-3">
             <div class="card">
@@ -583,7 +582,7 @@
 </nav>
 
 
-
+@*
 <script>
     $(document).ready(function () {
 
@@ -595,7 +594,7 @@
           // if(e.currentTarget.checked){
 
                 $.ajax({
-                    url: '/Main/SortingMission',
+                    url: '/Main/plateform',
                     type: 'POST',
                     data: {  "sortOrder":sortOrder },
                     //dataType: 'json',
@@ -610,4 +609,65 @@
         });
 
      });
-</script>
+</script>*@
+@*<script>
+
+    function SearchMission()
+    {
+        var search = $('#Searchtxt input[type=search]').val();
+        var countries = [];
+        var cities = [];
+        var themes = [];
+        var skills = [];
+        
+        $('.fcountry input[type="checkbox"]:checked').each(function() {
+                     countries.push($(this).val();
+                });
+        $('.fcity input[type="checkbox"]:checked').each(function() {
+                     countries.push($(this).val();
+                });
+        $('.ftheme input[type="checkbox"]:checked').each(function() {
+                     countries.push($(this).val();
+                });
+        $('.fskill input[type="checkbox"]:checked').each(function() {
+                     countries.push($(this).val();
+                });
+        $('.sort li a').click(function (e){
+            var  sortOrder= $(this).text();
+             });
+
+         $.ajax({
+                    url: '/Main/FilterData',
+                    type: 'POST',
+                    data: {  "sortOrder":sortOrder
+                             "countries":countries
+                             "cities":cities
+                             "themes":themes
+                             "skills":skills
+                             "search":search
+                    },
+                    //dataType: 'json',
+                    success: function (data) {
+                        
+                       
+                    }
+                });
+
+    }
+    $(document).ready(function () {
+
+         $('.sort li a').click(function (e){
+            var  sortOrder= $(this).text();
+
+            //console.log(sortOrder);
+
+          // if(e.currentTarget.checked){
+
+               
+
+                 
+        
+        });
+
+     });
+</script>*@

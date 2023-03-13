@@ -34,11 +34,11 @@ namespace CI_plateform.Controllers
          }*/
 
         [Route("Main/plateform", Name = "plateform")]
-        public async Task<IActionResult> plateform(CardViewModel model)
+        public async Task<IActionResult> plateform(CardViewModel model, String sortOrder = "a")
         
         {
             ViewBag.username = HttpContext.Session.GetString("username");
-            var data =  _PlateformRepository.GetCardData(model);
+            var data =  _PlateformRepository.GetCardData(model,sortOrder);
             return View(data);
         }
 
@@ -48,12 +48,18 @@ namespace CI_plateform.Controllers
 
             return Json(data);
         }
-        public IActionResult SortingMission(String sortOrder)
+       /* public IActionResult SortingMission(String sortOrder)
         {
             var data = _PlateformRepository.GetSortingMission(sortOrder);
             return Json(data);
-        }
+        }*/
 
+       /* public IActionResult FilterData(string[] city, string[] theme,string[] skill)
+        {
+            var data = _PlateformRepository.GetFilterData(city, theme, skill);
+            return Json(data);
+        }
+*/
        
 
 

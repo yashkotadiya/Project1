@@ -17,9 +17,21 @@ namespace CI_plateform.Repository.Repository
         {
             _context = context;
         }
-        public CardViewModel GetCardData(CardViewModel Model)
+        public CardViewModel GetCardData(CardViewModel Model, string sortOrder)
         {
            var mission = _context.Missions.ToList();
+            switch (sortOrder)
+            {
+                case "Newest":
+                    mission = _context.Missions.OrderBy(s => s.CreatedAt).ToList();
+                    break;
+                case "Oldest":
+                    mission = _context.Missions.OrderByDescending(s => s.CreatedAt).ToList();
+                    break;
+                case "Deadline":
+                    mission = _context.Missions.OrderBy(s => s.EndDate).ToList();
+                    break;
+            }
             var skill = _context.Skills.ToList();
             var city = _context.Cities.ToList();
             var country = _context.Countries.ToList();
@@ -44,7 +56,24 @@ namespace CI_plateform.Repository.Repository
             return city;
         }
 
-        public List<Mission> GetSortingMission(string sortOrder)
+        /*public CardViewModel GetFilterData(string[] city, string[] theme, string[] skill)
+        {
+            *//* if (city.Length == 0) 
+             { 
+                 return null;
+             }
+             else
+             {
+                 foreach (var item in city)
+                 {
+                     var City = _context.Cities.Where(a => a.CityId == item).ToList();
+                 }
+             }*//*
+            
+           
+        }*/
+
+        /*public List<Mission> GetSortingMission(string sortOrder)
         {
             var mission = _context.Missions.ToList();
             switch (sortOrder)
@@ -63,11 +92,11 @@ namespace CI_plateform.Repository.Repository
             return mission;
 
         }
-
-       /* public Task<Mission> MissionCarsView(Mission Model)
-        {
-            var Missions = _context.Missions.ToList();
-            return Missions;
-        }*/
+*/
+        /* public Task<Mission> MissionCarsView(Mission Model)
+         {
+             var Missions = _context.Missions.ToList();
+             return Missions;
+         }*/
     }
 }

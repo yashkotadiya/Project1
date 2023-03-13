@@ -10,9 +10,11 @@ namespace CI_plateform.Repository.Repository.Interface
 {
     public interface PlateformInterface
     {
-        CardViewModel GetCardData(CardViewModel Model);
+        CardViewModel GetCardData(CardViewModel Model, string sortOrder);
 
-        List<Mission> GetSortingMission(string sortOrder);
+     /*   CardViewModel GetFilterData(string[] city, string[] theme, string[] skill);*/
+
+        /*List<Mission> GetSortingMission(string sortOrder);*/
         
         List<City> GetCityByCountryName(int id);
     }
