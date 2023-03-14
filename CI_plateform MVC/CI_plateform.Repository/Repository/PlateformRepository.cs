@@ -19,6 +19,7 @@ namespace CI_plateform.Repository.Repository
         }
         public CardViewModel GetCardData(CardViewModel Model)
         {
+            int pageSize = 1;
             var mission = _context.Missions.ToList();
             var skill = _context.Skills.ToList();
             var city = _context.Cities.ToList();
@@ -34,19 +35,25 @@ namespace CI_plateform.Repository.Repository
             data.MissionThemes = theme;
             data.MissionSkills = missionSkill;
 
+           /* data.Missions = mission.Skip((1 - 1) * pageSize).Take(pageSize).ToList();*/
+
             return data;
 
         }
 
-        public List<City> GetCityByCountryName(int id)
+        public List<City> GetCityByCountryName(string[] Country)
         {
-            var city = _context.Cities.Where(a => a.CountryId == id).ToList();
+            var city = _context.Cities.ToList();
+            if(Country.Length>0)
+            {
+                city = city.Where(a => Country.Contains(a.CountryId.ToString())).ToList();
+            }
             return city;
         }
 
-        public CardViewModel GetFilterData(string[] city, string[] theme, string[] skill, string[] country, string search, string sortOrder)
+        public CardViewModel GetFilterData(string[] city, string[] theme, string[] skill, string[] country, string search, string sortOrder, int pageIndex)
         {
-
+            int pageSize = 1;
             var missionCards = GetMissionCard();
            
             if ( country.Length > 0)
@@ -97,9 +104,15 @@ namespace CI_plateform.Repository.Repository
                     break;
             }
 
+            if (pageIndex != null)
+            {
+                missionCards.Missions = missionCards.Missions.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+
             return missionCards;
 
         }
+
         public CardViewModel GetMissionCard()
         {
             List<Mission> mission = _context.Missions.ToList();

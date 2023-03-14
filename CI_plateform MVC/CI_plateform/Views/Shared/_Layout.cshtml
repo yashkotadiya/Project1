@@ -82,19 +82,22 @@
 
 
 <script>
-    $(document).ready(function () {
+    function addcity(){
 
-         $('.fCountry input[type=checkbox]').click(function (e){
-            var CountryId = $(this).val();
-
+        var CountryId = [];
+         //$('.fCountry input[type=checkbox]').click(function (e){
+         //   var CountryId = $(this).val();
+           $('.fCountry input[type="checkbox"]:checked').each(function() {
+                     CountryId.push($(this).val());
+                });
             console.log(CountryId);
 
           // if(e.currentTarget.checked){
 
                 $.ajax({
                     url: '/Main/GetCity',
-                    type: 'GET',
-                    data: {  "CountryId":CountryId },
+                    type: 'Post',
+                    data: {  CountryId:CountryId },
                     dataType: 'json',
                     success: function (data) {
 
@@ -114,10 +117,11 @@
 
                     }
                 });
+    
+    }    
         
-        });
 
-     });
+     
 </script>
 @*---------------------------------------------------------------filter for theme-----------------------------------------------------------*@
  @*<script>

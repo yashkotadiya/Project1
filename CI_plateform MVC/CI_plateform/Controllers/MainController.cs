@@ -30,7 +30,7 @@ namespace CI_plateform.Controllers
             return View(data);
         }
 
-        public  IActionResult GetCity(int CountryId)
+        public  IActionResult GetCity(string[] CountryId)
         {
             var data = _PlateformRepository.GetCityByCountryName(CountryId);
 
@@ -38,10 +38,18 @@ namespace CI_plateform.Controllers
         }
       
 
-        public IActionResult FilterData(string[] cities, string[] themes, string[] skills, string[] countries, string search,string sortOrder)
+        public IActionResult FilterData(string[] cities, string[] themes, string[] skills, string[] countries, string search,string sortOrder,int pageIndex,int gridid)
         {
-            var data = _PlateformRepository.GetFilterData(cities, themes, skills, countries, search, sortOrder);
-            return PartialView("Gridcard", data);
+            var data = _PlateformRepository.GetFilterData(cities, themes, skills, countries, search, sortOrder, pageIndex);
+            if(gridid==1)
+            {
+                return PartialView("Gridcard", data);
+            }
+            else
+            {
+                return PartialView("Listcard", data);
+            }
+          
         }
 
 

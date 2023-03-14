@@ -11,7 +11,7 @@
 @Html.Partial("Secondnav")
 <div class=" container-fluid justify-content-between d-flex pt-3">
     <div class="">
-        <h3>Explore 72 Mission</h3>
+        <h3>Explore @Model.Missions.Count Mission</h3>
 
     </div>
     <div class="row">
@@ -34,13 +34,21 @@
                 <option value="2">Oldest</option>
                 <option value="3">Deadline</option>
               </select>
+        </div
+        <div   id="gridbtn">
+            <button class="btn btn-outline-light col" onclick="opengrid()"  value="1">
+            <img src="~/images/grid.png">
+            </button>
+            <button class="btn btn-outline-light col " onclick="openlist()"  value="2">
+            <img src="~/images/list.png">
+            </button>
         </div>
-        <button class="btn btn-outline-light col" onclick="opengrid()">
+       @* <button class="btn btn-outline-light col" onclick="opengrid();SearchMission()" id="gridbtn" value="1">
             <img src="~/images/grid.png">
         </button>
-        <button class="btn btn-outline-light col " onclick="openlist()">
+        <button class="btn btn-outline-light col " onclick="openlist();SearchMission()" id="gridbtn" value="2">
             <img src="~/images/list.png">
-        </button>
+        </button>*@
 
     </div>
 </div>
@@ -560,24 +568,26 @@
 <div class="container-fluid mt-4 ps-4 pe-4 listview" id="listview" style="display: none;">
    
     @Html.Partial("Listcard")
-    @Html.Partial("Listcard")
-    @Html.Partial("Listcard")
+   @* @Html.Partial("Listcard")
+    @Html.Partial("Listcard")*@
 
 </div>
 
 
 
 <nav aria-label="Page navigation example " class="justify-content-center d-flex">
-    <ul class="pagination">
+    <ul class="pagination" id="page">
         <li class="page-item">
             <a class="page-link" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only">Previous</span>
             </a>
         </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+        <li class="page-item "  ><a class="page-link">1</a></li>
+        <li class="page-item "  ><a class="page-link">2</a></li>
+        <li class="page-item "  ><a class="page-link">3</a></li>
+
         <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
@@ -687,6 +697,7 @@
         var themes = [];
         var skills = [];
         var  sortOrder= $('#sortby').find("option:selected").val();
+       // var gridid = $('#gridbtn button').val();
         
         $('.fCountry input[type="checkbox"]:checked').each(function() {
                      countries.push($(this).val());
@@ -710,6 +721,7 @@
              console.log(themes)
              console.log(skills)
              console.log(sortOrder)
+            // console.log(gridid)
 
          $.ajax({
                     url: '/Main/FilterData',
@@ -721,16 +733,69 @@
                              "themes":themes,
                              "skills":skills,
                              "search":search,
-                             "sortOrder":sortOrder
+                             "sortOrder":sortOrder,
+                            // "gridid":gridid
                              
                     },
                     //dataType: 'json',
                     success: function (data) {
+
                         
+                      $('#listview').html(data);
                       $('#gridfilter').html(data);
+                      
                     }
                 });
 
     }
    
+</script>
+<script>
+    $('#page li a').click(function() {
+   
+    var pageIndex = $(this).text();
+
+      $.ajax({
+                    url: '/Main/FilterData',
+                    type: 'POST',
+                    dataType:'html',
+                    data: {  
+                             "pageIndex":pageIndex,      
+                    },
+                    
+                    success: function (data) {
+                        
+                      $('#gridfilter').html(data);
+                      $('#listview').html(data);
+                     
+                    }
+                });
+   
+});
+
+
+</script>
+<script>
+    
+$('#gridbtn button').click(function() {
+   console.log("hi")
+    var gridid = $(this).val();
+    console.log(gridid)
+      $.ajax({
+                    url: '/Main/FilterData',
+                    type: 'POST',
+                    dataType:'html',
+                    data: {  
+                             "gridid":gridid,      
+                    },
+                    
+                    success: function (data) {
+                        
+                      $('#gridfilter').html(data);
+                      $('#listview').html(data);
+                     
+                    }
+                });
+   
+});
 </script>

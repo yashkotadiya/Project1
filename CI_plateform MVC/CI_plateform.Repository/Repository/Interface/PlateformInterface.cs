@@ -12,10 +12,10 @@ namespace CI_plateform.Repository.Repository.Interface
     {
         CardViewModel GetCardData(CardViewModel Model);
 
-       CardViewModel GetFilterData(string[] city, string[] theme, string[] skill, string[] country, string search, string sortOrder);
+       CardViewModel GetFilterData(string[] city, string[] theme, string[] skill, string[] country, string search, string sortOrder, int pageIndex);
 
         CardViewModel GetMissionCard();
         
-        List<City> GetCityByCountryName(int id);
+        List<City> GetCityByCountryName(string[] Country);
     }
 }
