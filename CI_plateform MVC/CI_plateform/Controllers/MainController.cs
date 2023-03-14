@@ -8,11 +8,6 @@ namespace CI_plateform.Controllers
     public class MainController : Controller
     {
 
-        /*  public ActionResult secondnavbar()
-          {
-              return PartialView("secondnav");
-          }*/
-
         private readonly ILogger<HomeController> _logger;
         private readonly PlateformInterface _PlateformRepository;
         
@@ -25,20 +20,13 @@ namespace CI_plateform.Controllers
            
         }
 
-        /* public IActionResult city(City Model) 
-
-         {
-             var city = _context.Cities.ToList();
-             return View(city);
-
-         }*/
-
+        
         [Route("Main/plateform", Name = "plateform")]
-        public async Task<IActionResult> plateform(CardViewModel model, String sortOrder = "a")
+        public async Task<IActionResult> plateform(CardViewModel model)
         
         {
             ViewBag.username = HttpContext.Session.GetString("username");
-            var data =  _PlateformRepository.GetCardData(model,sortOrder);
+            var data =  _PlateformRepository.GetCardData(model);
             return View(data);
         }
 
@@ -48,19 +36,18 @@ namespace CI_plateform.Controllers
 
             return Json(data);
         }
-       /* public IActionResult SortingMission(String sortOrder)
-        {
-            var data = _PlateformRepository.GetSortingMission(sortOrder);
-            return Json(data);
-        }*/
+        /* public IActionResult SortingMission(String sortOrder)
+         {
+             var data = _PlateformRepository.GetSortingMission(sortOrder);
+             return Json(data);
+         }*/
 
-       /* public IActionResult FilterData(string[] city, string[] theme,string[] skill)
+        public IActionResult FilterData(string[] cities, string[] themes, string[] skills, string[] countries, string search,string sortOrder)
         {
-            var data = _PlateformRepository.GetFilterData(city, theme, skill);
-            return Json(data);
+            var data = _PlateformRepository.GetFilterData(cities, themes, skills, countries, search, sortOrder);
+            return PartialView("Gridcard", data);
         }
-*/
-       
+
 
 
 

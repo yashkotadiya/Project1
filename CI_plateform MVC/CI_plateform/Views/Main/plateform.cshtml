@@ -16,18 +16,24 @@
     </div>
     <div class="row">
         <div class="dropdown col">
-            <button class="btn dropdown-toggle btn-outline-light border-dark" type="button"
+            @*<button class="btn dropdown-toggle btn-outline-light border-dark" type="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
                 Sortby..
 
                 <!-- &nbsp; -->
                 <img src="~/images/drop-down.png" class="ic-down ms-5">
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end sort">
+            </button>*@
+            @*<ul class="dropdown-menu dropdown-menu-end sort">
                 <li><a class="dropdown-item" asp-controller="Main" asp-action="plateform" asp-route-sortOrder="Newest" >Newest</a></li>
                 <li><a class="dropdown-item" asp-controller="Main" asp-action="plateform" asp-route-sortOrder="Oldest">Oldest</a></li>
                 <li><a class="dropdown-item" asp-controller="Main" asp-action="plateform" asp-route-sortOrder="Deadline">Deadline</a></li>
-            </ul>
+            </ul>*@
+            <select class="form-select" aria-label="Default select example" id="sortby" onchange="SearchMission()" style="width:120px">
+                <option class="" selected >Sortby..</option>
+                <option value="1">Newest</option>
+                <option value="2">Oldest</option>
+                <option value="3">Deadline</option>
+              </select>
         </div>
         <button class="btn btn-outline-light col" onclick="opengrid()">
             <img src="~/images/grid.png">
@@ -41,7 +47,7 @@
 
 
 <div class="container-fluid mt-4 gridview" id="gridview">
-    <div class="row">
+    <div class="row" id="gridfilter">
         
         @Html.Partial("Gridcard")
        
@@ -671,3 +677,60 @@
 
      });
 </script>*@
+<script>
+
+    function SearchMission()
+    {
+        var search = $('input[name="search"]').val();
+        var countries = [];
+        var cities = [];
+        var themes = [];
+        var skills = [];
+        var  sortOrder= $('#sortby').find("option:selected").val();
+        
+        $('.fCountry input[type="checkbox"]:checked').each(function() {
+                     countries.push($(this).val());
+                });
+        $('.fCity input[type="checkbox"]:checked').each(function() {
+                     cities.push($(this).val());
+                });
+        $('.fTheme input[type="checkbox"]:checked').each(function() {
+                     themes.push($(this).val());
+                });
+        $('.fSkill input[type="checkbox"]:checked').each(function() {
+                     skills.push($(this).val());
+                });
+        //$('#sortby ').each(function (e){
+        //    sortOrder= $(this).val();
+        //     });
+
+             console.log(search)
+             console.log(countries)
+             console.log(cities)
+             console.log(themes)
+             console.log(skills)
+             console.log(sortOrder)
+
+         $.ajax({
+                    url: '/Main/FilterData',
+                    type: 'POST',
+                    dataType:'html',
+                    data: {  
+                             "countries":countries,
+                             "cities":cities,
+                             "themes":themes,
+                             "skills":skills,
+                             "search":search,
+                             "sortOrder":sortOrder
+                             
+                    },
+                    //dataType: 'json',
+                    success: function (data) {
+                        
+                      $('#gridfilter').html(data);
+                    }
+                });
+
+    }
+   
+</script>

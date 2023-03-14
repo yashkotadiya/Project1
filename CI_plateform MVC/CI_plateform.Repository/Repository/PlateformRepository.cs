@@ -17,21 +17,9 @@ namespace CI_plateform.Repository.Repository
         {
             _context = context;
         }
-        public CardViewModel GetCardData(CardViewModel Model, string sortOrder)
+        public CardViewModel GetCardData(CardViewModel Model)
         {
-           var mission = _context.Missions.ToList();
-            switch (sortOrder)
-            {
-                case "Newest":
-                    mission = _context.Missions.OrderBy(s => s.CreatedAt).ToList();
-                    break;
-                case "Oldest":
-                    mission = _context.Missions.OrderByDescending(s => s.CreatedAt).ToList();
-                    break;
-                case "Deadline":
-                    mission = _context.Missions.OrderBy(s => s.EndDate).ToList();
-                    break;
-            }
+            var mission = _context.Missions.ToList();
             var skill = _context.Skills.ToList();
             var city = _context.Cities.ToList();
             var country = _context.Countries.ToList();
@@ -56,47 +44,86 @@ namespace CI_plateform.Repository.Repository
             return city;
         }
 
-        /*public CardViewModel GetFilterData(string[] city, string[] theme, string[] skill)
+        public CardViewModel GetFilterData(string[] city, string[] theme, string[] skill, string[] country, string search, string sortOrder)
         {
-            *//* if (city.Length == 0) 
-             { 
-                 return null;
-             }
-             else
-             {
-                 foreach (var item in city)
-                 {
-                     var City = _context.Cities.Where(a => a.CityId == item).ToList();
-                 }
-             }*//*
-            
-           
-        }*/
 
-        /*public List<Mission> GetSortingMission(string sortOrder)
-        {
-            var mission = _context.Missions.ToList();
-            switch (sortOrder)
+            var missionCards = GetMissionCard();
+           
+            if ( country.Length > 0)
             {
-                case "Newest":
-                    mission = _context.Missions.OrderBy(s => s.CreatedAt).ToList();
-                    break;
-                case "Oldest":
-                    mission = _context.Missions.OrderByDescending(s => s.CreatedAt).ToList();
-                    break;
-                case "Deadline":
-                    mission = _context.Missions.OrderBy(s => s.EndDate).ToList();
-                    break;
+                
+                missionCards.Missions = missionCards.Missions.Where(a =>  country.Contains(a.CountryId.ToString())).ToList();
 
             }
-            return mission;
+            if (city.Length > 0)
+            {
+              
+              missionCards.Missions = missionCards.Missions.Where(a => city.Contains(a.CityId.ToString())).ToList();
+            }
+            if (theme.Length > 0)
+            {
+                   
+                   missionCards.Missions = missionCards.Missions.Where(a => theme.Contains(a.ThemeId.ToString())).ToList();
+            }
+            if (skill.Length > 0)
+            {
+                
+                var x = missionCards.MissionSkills.Where(a => skill.Contains(a.SkillId.ToString())).ToList();
+                var list = new List<long>();
+                
+                foreach(var n in x)
+                {
+                    list.Add(n.MissionId);
+
+                }
+                missionCards.Missions = missionCards.Missions.Where(a => list.Contains(a.MissionId)).ToList();
+
+            }
+            if (search != null)
+            {
+                missionCards.Missions = missionCards.Missions.Where(a => a.Title.ToLower().Contains(search.ToLower())).ToList();
+            }
+
+            switch (sortOrder)
+            {
+                case "1":
+                    missionCards.Missions = missionCards.Missions.OrderBy(s => s.CreatedAt).ToList();
+                    break;
+                case "2":
+                    missionCards.Missions = missionCards.Missions.OrderByDescending(s => s.CreatedAt).ToList();
+                    break;
+                case "3":
+                    missionCards.Missions = missionCards.Missions.OrderBy(s => s.EndDate).ToList();
+                    break;
+            }
+
+            return missionCards;
 
         }
-*/
-        /* public Task<Mission> MissionCarsView(Mission Model)
-         {
-             var Missions = _context.Missions.ToList();
-             return Missions;
-         }*/
+        public CardViewModel GetMissionCard()
+        {
+            List<Mission> mission = _context.Missions.ToList();
+            // List<MissionMedium> missionMedia = _context.MissionMedia.ToList();
+            List<MissionSkill> missionSkills = _context.MissionSkills.ToList();
+            List<MissionTheme> missionThemes = _context.MissionThemes.ToList();
+            // List<MissionRating> missionRatings = _context.MissionRatings.ToList();
+            List<City> cities = _context.Cities.ToList();
+            List<Country> countries = _context.Countries.ToList();
+            List<Skill> skills = _context.Skills.ToList();
+
+            CardViewModel missionCards = new CardViewModel();
+            {
+
+                missionCards.Missions = mission;
+                missionCards.MissionThemes = missionThemes;
+                missionCards.MissionSkills = missionSkills;
+                missionCards.Skills = skills;
+                // missionCards.MissionMedium = missionMedia;
+                // missionCards.MissionRating = missionRatings;
+                missionCards.Countries = countries;
+                missionCards.Cities = cities;
+            }
+            return missionCards;
+        }
     }
 }
