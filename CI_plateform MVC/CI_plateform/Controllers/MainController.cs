@@ -36,11 +36,7 @@ namespace CI_plateform.Controllers
 
             return Json(data);
         }
-        /* public IActionResult SortingMission(String sortOrder)
-         {
-             var data = _PlateformRepository.GetSortingMission(sortOrder);
-             return Json(data);
-         }*/
+      
 
         public IActionResult FilterData(string[] cities, string[] themes, string[] skills, string[] countries, string search,string sortOrder)
         {
